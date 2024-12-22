@@ -26,13 +26,21 @@ const Table = ({ projects }) => {
           return (
             <tr key={project['s.no']}>
               <td>{project['s.no']}</td>
-              <td>{project['percentage.funded']}%</td>
+              
               <td>
-                {currencyMap[currency.toLowerCase()]
-                  ? `${currencyMap[currency.toLowerCase()]} 
-                     ${project['amt.pledged'].toLocaleString()}`
-                  : `${currency.toUpperCase()}
-                     ${project['amt.pledged'].toLocaleString()}`}
+                {project['percentage.funded']
+                  ? `${project['percentage.funded']}%`
+                  : 'N/A'}
+              </td>
+
+              <td>
+                {currency && project['amt.pledged']
+                  ? currencyMap[currency.toLowerCase()]
+                    ? `${currencyMap[currency.toLowerCase()]} 
+                       ${project['amt.pledged'].toLocaleString()}`
+                    : `${currency.toUpperCase()} 
+                       ${project['amt.pledged'].toLocaleString()}`
+                  : 'N/A'}
               </td>
             </tr>
           );
